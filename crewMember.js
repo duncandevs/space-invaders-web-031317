@@ -1,9 +1,12 @@
 class CrewMember {
   constructor(position, spaceship){
     this.position = position;
+
     if(spaceship){
       this.currentShip = spaceship;
+
     } else {
+      //note this.currentShip will call an instance of currentShip on this!
       this.currentShip = 'Looking for a Rig';
     }
   }
@@ -11,11 +14,16 @@ class CrewMember {
   chargePhasers() {
     //thi.currentShip refers to an instance of the spaceship object
       if(this.currentShip !== 'Looking for a Rig' && this.position === 'Gunner') {
-        if (this.currentShip.phasersCharge === 'uncharged') {
           this.currentShip.phasersCharge = 'charged!';
-        } else {
-          this.currentShip.phasersCharge = 'uncharged';
-        }
+      } else {
+
+        return 'had no effect'
+      }
+    }
+
+    setsInvisibility() {
+      if(this.currentShip !== 'Looking for a Rig' && this.position === 'Defender') {
+        this.currentShip.cloaked = true
       } else {
         return 'had no effect'
       }
@@ -23,23 +31,7 @@ class CrewMember {
 
   engageWarpDrive() {
     if(this.currentShip !== 'Looking for a Rig' && this.position === 'Pilot') {
-      if (this.currentShip.warpDrive === 'disengaged') {
-        this.currentShip.warpDrive = 'engaged!'
-      } else {
-        this.currentShip.warpDrive = 'disengaged'
-      }
-    } else {
-      return 'had no effect'
-    }
-  }
-
-  setsInvisibility() {
-    if(this.currentShip !== 'Looking for a Rig' && this.position === 'Defender') {
-      if (this.currentShip.cloaked) {
-        this.currentShip.cloaked = false
-      } else {
-        this.currentShip.cloaked = true
-      }
+      this.currentShip.warpDrive = 'engaged!'
     } else {
       return 'had no effect'
     }
